@@ -19,8 +19,7 @@ services:
     ports:
       - "8501:8501"
     depends_on:
-      backend:
-        condition: service_healthy  # wait until backend is healthy
+      - backend
     restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8501"]
