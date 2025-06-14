@@ -35,7 +35,7 @@ jobs:
 
     - name: Run docker compose for integration
       run: |
-        docker-compose up -d
+        docker compose up -d
         sleep 15  # wait for services to start
 
     - name: Test FastAPI Health
