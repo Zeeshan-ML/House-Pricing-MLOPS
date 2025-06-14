@@ -1,26 +1,14 @@
-import streamlit as st #ignore
-import requests
+import streamlit as st
 
-st.title("🏠 California House Price Predictor")
+st.set_page_config(page_title="California House Price App", page_icon="🏠")
 
-st.write("Enter the following features to predict the house price:")
+st.title("🏡 Welcome to California House Price Predictor")
+st.markdown("""
+This app predicts the **Median House Value** in California based on housing characteristics.
 
-features = {
-    "MedInc": st.number_input("Median Income", min_value=0.0),
-    "HouseAge": st.number_input("House Age", min_value=0.0),
-    "AveRooms": st.number_input("Average Rooms", min_value=0.0),
-    "AveBedrms": st.number_input("Average Bedrooms", min_value=0.0),
-    "Population": st.number_input("Population", min_value=0.0),
-    "AveOccup": st.number_input("Average Occupants", min_value=0.0),
-    "Latitude": st.number_input("Latitude", min_value=0.0),
-    "Longitude": st.number_input("Longitude", min_value=-180.0),
-}
+### 📌 Pages
+- **Predict:** Enter input features and get price predictions.
+- **About:** Learn more about the dataset and how the model works.
+""")
+st.image("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Northern_California_landscape.jpg/1125px-Northern_California_landscape.jpg", use_container_width=True)
 
-if st.button("Predict"):
-    with st.spinner("Predicting..."):
-        response = requests.post("http://127.0.0.1:8000/predict", json=features)
-        if response.status_code == 200:
-            price = response.json()['predicted_price']
-            st.success(f"🏡 Predicted Median House Price: ${price * 100000:.2f}")
-        else:
-            st.error("Prediction failed. Check if the FastAPI server is running.")
