@@ -33,7 +33,7 @@ jobs:
     - name: Build Frontend Image
       run: docker build -t my-frontend ./frontend
 
-    - name: Run docker-compose for integration
+    - name: Run docker compose for integration
       run: |
         docker-compose up -d
         sleep 15  # wait for services to start
